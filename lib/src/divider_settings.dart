@@ -8,6 +8,7 @@ class DividerSettings {
   final Duration? duration;
   final Curve? curve;
   final bool isHideAutomatically;
+  final double horizontalIndent;
 
   const DividerSettings({
     this.indent = 0,
@@ -17,6 +18,7 @@ class DividerSettings {
     this.duration,
     this.curve,
     this.isHideAutomatically = true,
+    this.horizontalIndent = 0,
   });
 
   @override
@@ -28,7 +30,8 @@ class DividerSettings {
         identical(decoration, other.decoration) &&
         identical(duration, other.duration) &&
         identical(curve, other.curve) &&
-        identical(isHideAutomatically, other.isHideAutomatically);
+        identical(isHideAutomatically, other.isHideAutomatically) &&
+        identical(horizontalIndent, other.horizontalIndent); 
   }
 
   @override
@@ -40,5 +43,6 @@ class DividerSettings {
         duration,
         curve,
         isHideAutomatically,
+        horizontalIndent
       ]);
 }
