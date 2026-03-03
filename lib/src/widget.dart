@@ -58,6 +58,7 @@ class CustomSlidingSegmentedControl<T> extends StatefulWidget {
     this.clipBehavior = Clip.none,
     this.height = 40,
     this.controller,
+    this.dividerColor,
     this.customSegmentSettings,
     this.onHoverSegment,
     this.onTapSegment,
@@ -109,6 +110,7 @@ class CustomSlidingSegmentedControl<T> extends StatefulWidget {
 
   /// for container
   final Clip clipBehavior;
+  final Color? dividerColor;
 
   /// if the function returns `false`, there will be no transition to the segment
   ///
@@ -321,7 +323,7 @@ class _CustomSlidingSegmentedControlState<T>
                     width: isHideDivider ? 0 : widget.dividerSettings.thickness,
                     decoration: widget.dividerSettings.decoration ??
                         BoxDecoration(
-                          color: Theme.of(context).dividerColor,
+                          color: widget.dividerColor ?? Theme.of(context).dividerColor,
                         ),
                   ),
                 ),
