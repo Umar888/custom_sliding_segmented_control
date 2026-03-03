@@ -9,11 +9,13 @@ class AnimationPanel<T> extends StatelessWidget {
     required this.hasTouch,
     required this.duration,
     required this.curve,
+    required this.margin,
     this.decoration,
   });
 
   final double offset;
   final double? width;
+  final double? margin;
   final double? height;
   final Duration duration;
   final Curve curve;
@@ -29,6 +31,7 @@ class AnimationPanel<T> extends StatelessWidget {
       transform: Matrix4.translationValues(_offset, 0, 0),
       duration: hasTouch == false ? Duration.zero : duration,
       curve: curve,
+      margin: EdgeInsets.symmetric(horizontal: margin ?? 0),
       width: width,
       decoration: decoration,
       height: height,

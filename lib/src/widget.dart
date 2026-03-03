@@ -48,6 +48,7 @@ class CustomSlidingSegmentedControl<T> extends StatefulWidget {
     this.curve = Curves.easeInOut,
     this.innerPadding = const EdgeInsets.all(2.0),
     this.padding = 12,
+    this.thumbMargin,
     this.fixedWidth,
     this.decoration = const BoxDecoration(color: CupertinoColors.systemGrey5),
     this.thumbDecoration = const BoxDecoration(color: Colors.white),
@@ -91,6 +92,7 @@ class CustomSlidingSegmentedControl<T> extends StatefulWidget {
 
   /// fixed width items
   final double? fixedWidth;
+  final double? thumbMargin;
 
   final bool isShowDivider;
 
@@ -357,6 +359,7 @@ class _CustomSlidingSegmentedControlState<T>
             width: sizes[current],
             duration: widget.duration,
             curve: widget.curve,
+            margin: widget.thumbMargin,
             decoration: widget.thumbDecoration,
           ),
           Row(
