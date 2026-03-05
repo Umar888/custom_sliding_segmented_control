@@ -352,15 +352,18 @@ class _CustomSlidingSegmentedControlState<T>
                   .map((item) => _dividerItem(item.key, item.value))
                   .toList(),
             ),
-          AnimationPanel<T>(
-            hasTouch: hasTouch,
-            offset: offset,
-            height: height,
-            width: sizes[current],
-            duration: widget.duration,
-            curve: widget.curve,
-            margin: widget.thumbMargin,
-            decoration: widget.thumbDecoration,
+          Align(
+            alignment: _getAlignment(),
+            child: AnimationPanel<T>(
+              hasTouch: hasTouch,
+              offset: offset,
+              height: height,
+              width: sizes[current],
+              duration: widget.duration,
+              curve: widget.curve,
+              margin: widget.thumbMargin,
+              decoration: widget.thumbDecoration,
+            ),
           ),
           Row(
             children: widget.children.entries.map((item) {
@@ -385,8 +388,24 @@ class _CustomSlidingSegmentedControlState<T>
         ],
       ),
     );
-  }
 
+  }
+  Alignment _getAlignment() {
+    if(current != null) {
+      final index = widget.children.keys.toList().indexOf(current!);
+      final lastIndex = widget.children.length - 1;
+
+      if (index == 0) {
+        return Alignment.centerLeft;
+      } else if (index == lastIndex) {
+        return Alignment.centerRight;
+      } else {
+        return Alignment.center;
+      }
+    } else {
+      return Alignment.centerLeft;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return OrientationBuilder(
