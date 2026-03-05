@@ -202,7 +202,11 @@ class _CustomSlidingSegmentedControlState<T>
   }) {
     height = size.height;
     final Map<T?, double> _temp = {};
-    _temp.putIfAbsent(item.key, () => widget.fixedWidth ?? size.width);
+    _temp.putIfAbsent(
+      item.key,
+          () => (widget.fixedWidth ?? size.width) -
+          ((item.key == current) ? (widget.thumbMargin ?? 0) : 0),
+    );
 
     setState(() {
       if (isCacheEnabled) {
