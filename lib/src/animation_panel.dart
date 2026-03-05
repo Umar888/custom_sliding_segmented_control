@@ -37,7 +37,6 @@ class AnimationPanel<T> extends StatelessWidget {
       transform: Matrix4.translationValues(_offset, 0, 0),
       duration: hasTouch == false ? Duration.zero : duration,
       curve: curve,
-      alignment: alignment,
       width: (width ?? 0) - (margin ?? 0),
       decoration: decoration,
       height: height,
