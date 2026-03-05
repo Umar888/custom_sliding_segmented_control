@@ -325,7 +325,8 @@ class _CustomSlidingSegmentedControlState<T>
                     width: isHideDivider ? 0 : widget.dividerSettings.thickness,
                     decoration: widget.dividerSettings.decoration ??
                         BoxDecoration(
-                          color: widget.dividerColor ?? Theme.of(context).dividerColor,
+                          color: widget.dividerColor ??
+                              Theme.of(context).dividerColor,
                         ),
                   ),
                 ),
@@ -352,18 +353,19 @@ class _CustomSlidingSegmentedControlState<T>
                   .map((item) => _dividerItem(item.key, item.value))
                   .toList(),
             ),
-          Align(
-            alignment: _getAlignment(),
-            child: AnimationPanel<T>(
-              hasTouch: hasTouch,
-              offset: offset,
-              height: height,
-              width: sizes[current],
-              duration: widget.duration,
-              curve: widget.curve,
-              margin: widget.thumbMargin,
-              decoration: widget.thumbDecoration,
-            ),
+          AnimationPanel<T>(
+            hasTouch: hasTouch,
+            offset: offset,
+            totalItemsLength: widget.children.keys.toList().length,
+            index: current != null
+                ? widget.children.keys.toList().indexOf(current!)
+                : 0,
+            height: height,
+            width: sizes[current],
+            duration: widget.duration,
+            curve: widget.curve,
+            margin: widget.thumbMargin,
+            decoration: widget.thumbDecoration,
           ),
           Row(
             children: widget.children.entries.map((item) {
@@ -388,10 +390,10 @@ class _CustomSlidingSegmentedControlState<T>
         ],
       ),
     );
-
   }
+
   Alignment _getAlignment() {
-    if(current != null) {
+    if (current != null) {
       final index = widget.children.keys.toList().indexOf(current!);
       final lastIndex = widget.children.length - 1;
 
@@ -406,6 +408,7 @@ class _CustomSlidingSegmentedControlState<T>
       return Alignment.centerLeft;
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return OrientationBuilder(
