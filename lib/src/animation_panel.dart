@@ -27,13 +27,16 @@ class AnimationPanel<T> extends StatelessWidget {
     final isRtl = Directionality.of(context) == TextDirection.rtl;
     final _offset = isRtl ? offset * -1 : offset;
 
-    return AnimatedContainer(
-      transform: Matrix4.translationValues(_offset, 0, 0),
-      duration: hasTouch == false ? Duration.zero : duration,
-      curve: curve,
-      width: (width ?? 0) - (margin ?? 0),
-      decoration: decoration,
-      height: height,
+    return Padding(
+      padding: EdgeInsets.all(margin ?? 0),
+      child: AnimatedContainer(
+        transform: Matrix4.translationValues(_offset, 0, 0),
+        duration: hasTouch == false ? Duration.zero : duration,
+        curve: curve,
+        width: width,
+        decoration: decoration,
+        height: height,
+      ),
     );
   }
 }
