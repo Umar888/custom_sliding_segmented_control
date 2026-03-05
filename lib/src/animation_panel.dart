@@ -31,10 +31,13 @@ class AnimationPanel<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isRtl = Directionality.of(context) == TextDirection.rtl;
-    final _offset = isRtl ? offset * -1 : offset;
+    final double m = margin ?? 0;
+
+    final adjustedOffset =
+        (isRtl ? offset * -1 : offset) + (m / 2);
 
     return AnimatedContainer(
-      transform: Matrix4.translationValues(_offset, 0, 0),
+      transform: Matrix4.translationValues(adjustedOffset, 0, 0),
       duration: hasTouch == false ? Duration.zero : duration,
       curve: curve,
       width: (width ?? 0) - (margin ?? 0),
