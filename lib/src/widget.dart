@@ -352,17 +352,15 @@ class _CustomSlidingSegmentedControlState<T>
                   .map((item) => _dividerItem(item.key, item.value))
                   .toList(),
             ),
-          Center(
-            child: AnimationPanel<T>(
-              hasTouch: hasTouch,
-              offset: offset,
-              height: height,
-              width: sizes[current],
-              duration: widget.duration,
-              curve: widget.curve,
-              margin: widget.thumbMargin,
-              decoration: widget.thumbDecoration,
-            ),
+          AnimationPanel<T>(
+            hasTouch: hasTouch,
+            offset: offset,
+            height: height,
+            width: sizes[current],
+            duration: widget.duration,
+            curve: widget.curve,
+            margin: widget.thumbMargin,
+            decoration: widget.thumbDecoration,
           ),
           Row(
             children: widget.children.entries.map((item) {
