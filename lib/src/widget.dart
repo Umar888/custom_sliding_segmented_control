@@ -356,6 +356,7 @@ class _CustomSlidingSegmentedControlState<T>
           AnimationPanel<T>(
             hasTouch: hasTouch,
             offset: offset,
+            alignment: _getAlignment(),
             totalItemsLength: widget.children.keys.toList().length,
             index: current != null
                 ? widget.children.keys.toList().indexOf(current!)
