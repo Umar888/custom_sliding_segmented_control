@@ -338,6 +338,7 @@ class _CustomSlidingSegmentedControlState<T>
   }
 
   Widget layout() {
+    final double safeMargin = (widget.thumbMargin ?? 0).clamp(0, sizes[current] ?? double.infinity);
     return Container(
       clipBehavior: widget.clipBehavior,
       decoration: widget.decoration,
@@ -365,7 +366,7 @@ class _CustomSlidingSegmentedControlState<T>
             width: sizes[current],
             duration: widget.duration,
             curve: widget.curve,
-            margin: widget.thumbMargin,
+            margin: safeMargin,
             decoration: widget.thumbDecoration,
           ),
           Row(
