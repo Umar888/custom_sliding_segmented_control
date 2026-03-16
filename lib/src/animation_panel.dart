@@ -1,3 +1,5 @@
+import 'dart:nativewrappers/_internal/vm/lib/math_patch.dart';
+
 import 'package:flutter/material.dart';
 
 class AnimationPanel<T> extends StatelessWidget {
@@ -52,7 +54,7 @@ class AnimationPanel<T> extends StatelessWidget {
       transform: Matrix4.translationValues(adjustedOffset, 0, 0),
       duration: hasTouch == false ? Duration.zero : duration,
       curve: curve,
-      width: (width ?? 0) - m,
+      width: max((width ?? 0) - (margin ?? 0), 0),
       decoration: decoration,
       height: height,
     );
