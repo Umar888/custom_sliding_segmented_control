@@ -50,11 +50,16 @@ class AnimationPanel<T> extends StatelessWidget {
       adjustedOffset += m / 2;
     }
 
+    double _width = 0;
+    if(((width ?? 0) - (margin ?? 0)) > 0) {
+      _width = (width ?? 0) - (margin ?? 0);
+    }
+
     return AnimatedContainer(
       transform: Matrix4.translationValues(adjustedOffset, 0, 0),
       duration: hasTouch == false ? Duration.zero : duration,
       curve: curve,
-      width: max((width ?? 0) - (margin ?? 0), 1),
+      width: _width,
       decoration: decoration,
       height: height,
     );
